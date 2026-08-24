@@ -22,14 +22,22 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&display=swap" rel="stylesheet" />
   <style>
     * { font-family: 'Inter', sans-serif; }
+    .font-brand { font-family: 'Playfair Display', serif; font-style: italic; }
     .hero-bg {
-      background-image: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.5) 100%),
-        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80');
-      background-size: cover;
-      background-position: center top;
+      background: #ffe4f0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-stripe {
+      background: linear-gradient(135deg, #d6006e 0%, #f0429a 100%);
+    }
+    .logo-glow {
+      background: #ffffff;
+      border: 6px solid #d6006e;
+      box-shadow: 0 0 0 3px rgba(240,66,154,0.35);
     }
     .nav-link { transition: color .2s; }
     .nav-link:hover { color: #d6006e; }
@@ -37,8 +45,6 @@
     .btn-magenta:hover { background: linear-gradient(135deg, #b8005e 0%, #d6006e 100%); }
     .product-card:hover .product-img { transform: scale(1.04); }
     .product-img { transition: transform .4s ease; }
-    .countdown-box { background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.25); backdrop-filter: blur(4px); }
-    #modal-overlay { transition: opacity .3s; }
     .tag-brand {
       background: linear-gradient(135deg, #d6006e 0%, #f0429a 100%);
       letter-spacing: .04em;
@@ -57,7 +63,7 @@
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
       <!-- Logo -->
       <a href="#" class="flex-shrink-0">
-        <span class="text-2xl font-black tracking-tight text-gray-900">Fashion<span class="text-magenta-500">Model</span></span>
+        <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787178822/LOGO_tienda_sin_fondo_1.png" alt="Fashion Model" class="h-12 w-auto object-contain" />
       </a>
       <!-- Nav desktop -->
       <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-700">
@@ -103,50 +109,22 @@
 
   <!-- HERO BANNER -->
   <section class="hero-bg relative min-h-[88vh] flex items-center justify-center">
-    <div class="text-center text-white px-4 z-10">
-      <p class="uppercase tracking-[.25em] text-xs font-semibold mb-3 opacity-80">Nueva Colección</p>
-      <h1 class="text-5xl md:text-7xl font-black leading-tight mb-4 drop-shadow-lg">Moda que<br/><span class="text-fucsia-400">te define</span></h1>
-      <p class="text-lg md:text-xl font-light mb-8 max-w-md mx-auto opacity-90">Ropa y accesorios seleccionados para la mujer de hoy.</p>
+    <!-- Franja rosa -->
+    <div class="hero-stripe absolute top-0 left-0 w-full h-3"></div>
+    <div class="text-center text-gray-900 px-4 z-10">
+      <div class="relative w-56 h-56 md:w-64 md:h-64 mx-auto mb-6 flex items-center justify-center">
+        <div class="logo-glow absolute inset-0 rounded-full"></div>
+        <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787178822/LOGO_tienda_sin_fondo_1.png" alt="Fashion Model" class="relative h-40 md:h-48 w-auto object-contain drop-shadow-lg" />
+      </div>
+      <p class="uppercase tracking-[.25em] text-xs font-semibold mb-3 text-magenta-500">Nueva Colección</p>
+      <h1 class="font-brand text-4xl md:text-6xl font-bold leading-tight mb-4 text-gray-900">Tu Tienda donde<br/><span class="text-magenta-500">está tu Moda</span></h1>
+      <p class="text-lg md:text-xl font-light mb-8 max-w-md mx-auto text-gray-600">Ropa y accesorios seleccionados para la mujer de hoy.</p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
         <a href="#catalogo" class="btn-magenta text-white font-bold px-8 py-3.5 rounded-full shadow-xl text-base hover:shadow-2xl transition-shadow">Ver catálogo</a>
-        <a href="https://wa.me/56940149309" target="_blank" rel="noopener" class="bg-white/15 backdrop-blur border border-white/40 text-white font-semibold px-8 py-3.5 rounded-full text-base hover:bg-white/25 transition">Consultar stock</a>
+        <a href="https://wa.me/56940149309" target="_blank" rel="noopener" class="bg-white border border-gray-300 text-gray-800 font-semibold px-8 py-3.5 rounded-full text-base hover:bg-gray-50 transition">Consultar stock</a>
       </div>
     </div>
   </section>
-
-  <!-- POPUP / MODAL "Solo por Hoy" -->
-  <div id="modal-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-    <div class="relative bg-white rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden">
-      <!-- Top accent bar -->
-      <div class="btn-magenta h-2 w-full"></div>
-      <!-- Close -->
-      <button id="close-modal" class="absolute top-3 right-4 text-gray-400 hover:text-gray-700 text-2xl font-light leading-none">&times;</button>
-      <div class="px-8 pt-6 pb-8 text-center">
-        <p class="uppercase text-xs tracking-widest text-magenta-500 font-bold mb-1">⚡ Oferta Flash</p>
-        <h2 class="text-3xl font-black text-gray-900 leading-tight mb-1">¡Solo por Hoy!</h2>
-        <p class="text-5xl font-black text-magenta-500 my-3">40% Dcto</p>
-        <p class="text-gray-600 text-sm mb-5 font-medium">en TODO Fashion Model<br/><span class="text-gray-400 font-normal">Tiempo limitado · No acumulable</span></p>
-        <!-- Countdown -->
-        <div class="flex justify-center gap-3 mb-6">
-          <div class="countdown-box rounded-xl px-4 py-3 bg-gray-900 text-white min-w-[62px]">
-            <p id="cd-hours" class="text-2xl font-black leading-none">00</p>
-            <p class="text-[10px] uppercase tracking-widest mt-1 text-gray-400">Horas</p>
-          </div>
-          <span class="text-2xl font-black text-gray-400 self-center">:</span>
-          <div class="countdown-box rounded-xl px-4 py-3 bg-gray-900 text-white min-w-[62px]">
-            <p id="cd-mins" class="text-2xl font-black leading-none">00</p>
-            <p class="text-[10px] uppercase tracking-widest mt-1 text-gray-400">Min</p>
-          </div>
-          <span class="text-2xl font-black text-gray-400 self-center">:</span>
-          <div class="countdown-box rounded-xl px-4 py-3 bg-gray-900 text-white min-w-[62px]">
-            <p id="cd-secs" class="text-2xl font-black leading-none">00</p>
-            <p class="text-[10px] uppercase tracking-widest mt-1 text-gray-400">Seg</p>
-          </div>
-        </div>
-        <a href="#catalogo" id="modal-cta" class="btn-magenta text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg block hover:shadow-xl transition-shadow">¡Aprovechar descuento!</a>
-      </div>
-    </div>
-  </div>
 
   <!-- CATALOG SECTION -->
   <section id="catalogo" class="max-w-7xl mx-auto px-4 py-16">
@@ -156,9 +134,14 @@
       <p class="text-gray-500 mt-2 text-sm">Selección exclusiva · Stock limitado</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+    <!-- ROPA -->
+    <div class="mb-6 flex items-center gap-4">
+      <h3 class="text-xl md:text-2xl font-black text-gray-900">Ropa</h3>
+      <span class="flex-1 h-px bg-gray-200"></span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mb-16">
 
-      <!-- Product 1 -->
+      <!-- Conjunto Blazer Azul Marino con Blusa Blanca -->
       <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
         <div class="overflow-hidden relative">
           <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
@@ -167,24 +150,11 @@
         <div class="p-4 flex flex-col flex-1">
           <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Conjunto Blazer Azul Marino con Blusa Blanca</h3>
           <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$48.800</p>
-          <a href="https://wa.me/56940149309?text=Hola!%20Me%20interesa%20el%20Conjunto%20Blazer%20Azul%20Marino%20%2448.800" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Conjunto%20Blazer%20Azul%20Marino%20con%20Blusa%20Blanca%20%2448.800" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
         </div>
       </article>
 
-      <!-- Product 2 -->
-      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
-        <div class="overflow-hidden relative">
-          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
-          <img src="https://res.cloudinary.com/dy1ibwcdn/image/upload/v1781734430/Gemini_Generated_Image_9us1fe9us1fe9us1_qitp2t.png" alt="Cartera Azul con Café, Ecocuero" class="product-img w-full h-72 object-cover object-center" />
-        </div>
-        <div class="p-4 flex flex-col flex-1">
-          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Cartera Azul con Café, Ecocuero</h3>
-          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$32.900</p>
-          <a href="https://wa.me/56940149309?text=Hola!%20Me%20interesa%20la%20Cartera%20Azul%20con%20Caf%C3%A9%20Ecocuero%20%2432.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
-        </div>
-      </article>
-
-      <!-- Product 3 -->
+      <!-- Blusa Burdeo -->
       <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
         <div class="overflow-hidden relative">
           <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
@@ -193,11 +163,11 @@
         <div class="p-4 flex flex-col flex-1">
           <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Blusa Burdeo</h3>
           <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$19.900</p>
-          <a href="https://wa.me/56940149309?text=Hola!%20Me%20interesa%20la%20Blusa%20Burdeo%20%2419.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Blusa%20Burdeo%20%2419.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
         </div>
       </article>
 
-      <!-- Product 4 -->
+      <!-- Polera Lanilla -->
       <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
         <div class="overflow-hidden relative">
           <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
@@ -206,11 +176,111 @@
         <div class="p-4 flex flex-col flex-1">
           <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Polera Lanilla</h3>
           <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$21.900</p>
-          <a href="https://wa.me/56940149309?text=Hola!%20Me%20interesa%20la%20Polera%20Lanilla%20%2421.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Polera%20Lanilla%20%2421.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
         </div>
       </article>
 
-      <!-- Product 5 -->
+      <!-- Blusa de Lino con Diseño en Relieve -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787007163/file_000000004780820e97ba7b61fd4eee9b.png" alt="Blusa de Lino con Diseño en Relieve" class="product-img w-full h-72 object-cover object-top" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Blusa de Lino con Diseño en Relieve</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$28.900</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Blusa%20de%20Lino%20con%20Dise%C3%B1o%20en%20Relieve%20%2428.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Blusa de Algodón con Lino -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787610033/WhatsApp_Image_2026-08-24_at_18.13.57.jpg" alt="Blusa de Algodón con Lino" class="product-img w-full h-72 object-cover object-top" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Blusa de Algodón con Lino</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$28.900</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Blusa%20de%20Algod%C3%B3n%20con%20Lino%20%2428.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Polera de Algodón -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787610029/WhatsApp_Image_2026-08-24_at_18.13.58.jpg" alt="Polera de Algodón" class="product-img w-full h-72 object-cover object-top" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Polera de Algodón</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$26.900</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Polera%20de%20Algod%C3%B3n%20%2426.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Blusa Abotonada Talla Única -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787610028/WhatsApp_Image_2026-08-24_at_18.13.58_1.jpg" alt="Blusa Abotonada Talla Única" class="product-img w-full h-72 object-cover object-top" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Blusa Abotonada Talla Única</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$22.900</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Blusa%20Abotonada%20Talla%20%C3%9Anica%20%2422.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Blusa Talla Única -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787007160/Screenshot_20260817-170312_Copilot.jpg" alt="Blusa Talla Única" class="product-img w-full h-72 object-cover object-top" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Blusa Talla Única</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$24.900</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Blusa%20Talla%20%C3%9Anica%20%2424.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Bléiser Talla L -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787007159/Screenshot_20260817-174738_Copilot.jpg" alt="Bléiser Talla L" class="product-img w-full h-72 object-cover object-top" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Bléiser Talla L</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$30.900</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Bl%C3%A9iser%20Talla%20L%20%2430.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- PAÑUELOS Y ACCESORIOS -->
+    <div class="mb-6 flex items-center gap-4">
+      <h3 class="text-xl md:text-2xl font-black text-gray-900">Pañuelos y Accesorios</h3>
+      <span class="flex-1 h-px bg-gray-200"></span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+
+      <!-- Cartera Azul con Café, Ecocuero -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/dy1ibwcdn/image/upload/v1781734430/Gemini_Generated_Image_9us1fe9us1fe9us1_qitp2t.png" alt="Cartera Azul con Café, Ecocuero" class="product-img w-full h-72 object-cover object-center" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Cartera Azul con Café, Ecocuero</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$32.900</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Cartera%20Azul%20con%20Caf%C3%A9%2C%20Ecocuero%20%2432.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Anillo de Plata -->
       <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
         <div class="overflow-hidden relative">
           <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
@@ -219,7 +289,72 @@
         <div class="p-4 flex flex-col flex-1">
           <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Anillo de Plata</h3>
           <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$38.900</p>
-          <a href="https://wa.me/56940149309?text=Hola!%20Me%20interesa%20el%20Anillo%20de%20Plata%20%2438.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Anillo%20de%20Plata%20%2438.900" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Pañuelo Corto Dos Colores -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787610027/WhatsApp_Image_2026-08-24_at_18.13.58_2.jpg" alt="Pañuelo Corto Dos Colores" class="product-img w-full h-72 object-cover object-center" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Pañuelo Corto Dos Colores</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$5.990</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Pa%C3%B1uelo%20Corto%20Dos%20Colores%20%245.990" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Pañuelo Corto Multicolor -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787610028/WhatsApp_Image_2026-08-24_at_18.13.58_3.jpg" alt="Pañuelo Corto Multicolor" class="product-img w-full h-72 object-cover object-center" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Pañuelo Corto Multicolor</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$5.990</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Pa%C3%B1uelo%20Corto%20Multicolor%20%245.990" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Pañuelo Tres Colores -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787610029/WhatsApp_Image_2026-08-24_at_18.13.59_2.jpg" alt="Pañuelo Tres Colores" class="product-img w-full h-72 object-cover object-center" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Pañuelo Tres Colores</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$5.990</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Pa%C3%B1uelo%20Tres%20Colores%20%245.990" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Pañuelo de Seda -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787610031/WhatsApp_Image_2026-08-24_at_18.14.00_1.jpg" alt="Pañuelo de Seda" class="product-img w-full h-72 object-cover object-center" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Pañuelo de Seda</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$9.990</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Pa%C3%B1uelo%20de%20Seda%20%249.990" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Pañuelo Cachemira -->
+      <article class="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <span class="tag-brand absolute top-3 left-3 z-10 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full tracking-widest">Fashion Model</span>
+          <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787610030/WhatsApp_Image_2026-08-24_at_18.13.59_3.jpg" alt="Pañuelo Cachemira" class="product-img w-full h-72 object-cover object-center" />
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="text-sm font-semibold text-gray-800 leading-snug mb-1">Pañuelo Cachemira</h3>
+          <p class="text-magenta-500 font-black text-lg mt-auto pt-2">$9.990</p>
+          <a href="https://wa.me/56940149309?text=Hola%21%20Me%20interesa%20Pa%C3%B1uelo%20Cachemira%20%249.990" target="_blank" rel="noopener" class="mt-3 btn-magenta text-white text-xs font-bold px-4 py-2.5 rounded-full text-center hover:shadow-md transition-shadow">Consultar por WhatsApp</a>
         </div>
       </article>
 
@@ -244,7 +379,7 @@
     <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
       <!-- Brand -->
       <div>
-        <span class="text-2xl font-black text-white">Fashion<span class="text-fucsia-400">Model</span></span>
+        <img src="https://res.cloudinary.com/oufxoo43/image/upload/v1787178822/LOGO_tienda_sin_fondo_1.png" alt="Fashion Model" class="h-10 w-auto object-contain" />
         <p class="mt-3 text-gray-500 text-xs leading-relaxed">Tu tienda de moda y accesorios en La Unión.<br/>Atención personalizada, estilo para cada ocasión.</p>
         <div class="flex gap-3 mt-4">
           <a href="https://wa.me/56940149309" target="_blank" rel="noopener" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-magenta-500 transition-colors">
@@ -293,32 +428,6 @@
       document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 
-    // Modal close
-    function closeModal() {
-      const overlay = document.getElementById('modal-overlay');
-      overlay.style.opacity = '0';
-      overlay.style.pointerEvents = 'none';
-      setTimeout(() => overlay.style.display = 'none', 300);
-    }
-    document.getElementById('close-modal').addEventListener('click', closeModal);
-    document.getElementById('modal-cta').addEventListener('click', closeModal);
-    document.getElementById('modal-overlay').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
-
-    // Countdown – 8 hours from page load
-    const end = Date.now() + 8 * 60 * 60 * 1000;
-    function updateCountdown() {
-      const diff = Math.max(0, end - Date.now());
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-      document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
-      document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
